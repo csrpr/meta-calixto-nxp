@@ -86,3 +86,56 @@ The following layers are included on this release:
    GIT: git://github.com/Freescale/meta-freescale-distro.git
    Mailing list: https://lists.yoctoproject.org/listinfo/meta-freescale
    Note: Use [distro] in subject to easy the processing
+   
+
+- tree of meta-calixto-nxp layer :
+
+meta-calixto-nxp
+|
+├── conf
+│   ├── layer.conf
+│   └── machine
+│       ├── imx6ull-versa1024.conf
+│       ├── imx6ull-versa256.conf
+│       ├── imx6ull-versa512.conf
+│       └── include
+│           ├── calixto-imx-base.inc
+│           ├── e500mc.inc
+│           ├── e500v2.inc
+│           ├── e5500-64b.inc
+│           ├── e5500.inc
+│           ├── e6500-64b.inc
+│           ├── e6500.inc
+│           ├── fsl-default-settings.inc
+│           ├── fsl-default-versions.inc
+│           ├── imx8dxl-evk.inc
+│           ├── imx8mm-evk.inc
+│           ├── imx8mn-evk.inc
+│           ├── imx8mp-evk.inc
+│           ├── imx8x-mek.inc
+│           ├── imx-base.inc
+│           ├── qoriq-arm64.inc
+│           ├── qoriq-arm.inc
+│           ├── qoriq-base.inc
+│           ├── qoriq-ppc.inc
+│           └── utilities.inc
+├── README-CALIXTO-BSP.md
+├── recipes-bsp
+│   ├── files
+│   └── u-boot
+│       └── u-boot-calixto-nxp_2022.04.bb 
+├── recipes-calixto
+│   └── images
+│       ├── calixto-image-minimal.bb -[tested]
+│       └── calixto-image-multimedia.bb -[progressing]
+├── recipes-kernel
+│   ├── files
+│   │   └── deconfig - [need to be add the latest deconfig file]
+│   └── linux
+│       └── linux-calixto-nxp_6.1.1.bb 
+└── tools
+    ├── calixto-setup-release.sh
+    ├── install_prerequisites.sh
+    └── setup-environment
+
+-> 12 directories, 33 files
