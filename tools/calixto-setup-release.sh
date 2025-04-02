@@ -1,10 +1,8 @@
 #!/bin/sh
 #
-# i.MX Yocto Project Build Environment Setup Script
+# Calixto Yocto Project Build Environment Setup Script
 #
-# Copyright (C) 2011-2016 Freescale Semiconductor
-# Copyright 2017 NXP
-# Copyright 2024 Calixto System Pvt Ltd
+# Copyright (C) 2024-25 Calixto System Pvt Ltd
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -159,6 +157,14 @@ echo "# Switch to Debian packaging and include package-management in the image" 
 echo "PACKAGE_CLASSES = \"package_deb\"" >> conf/local.conf
 echo "EXTRA_IMAGE_FEATURES += \"package-management\"" >> conf/local.conf
 
+echo "" >> conf/local.conf
+echo "# Systemd packaging" >> conf/local.conf
+echo "DISTRO_FEATURES:append = \" systemd usrmerge\"" >> conf/local.conf
+echo "DISTRO_FEATURES_BACKFILL_CONSIDERED += \"sysvinit\"" >> conf/local.conf
+echo "VIRTUAL-RUNTIME_init_manager = \"systemd\"" >> conf/local.conf
+echo "VIRTUAL-RUNTIME_initscripts = \"systemd-compat-units\"" >> conf/local.conf
+echo "" >> conf/local.conf
+
 if [ ! -e $BUILD_DIR/conf/bblayers.conf.org ]; then
     cp $BUILD_DIR/conf/bblayers.conf $BUILD_DIR/conf/bblayers.conf.org
 else
@@ -170,7 +176,7 @@ META_FSL_BSP_RELEASE="${CWD}/sources/meta-imx/meta-bsp"
 
 echo "" >> $BUILD_DIR/conf/bblayers.conf
 
-echo "# Calixto yocto Project Release layers" >> $BUILD_DIR/conf/bblayers.conf
+echo "# Calixto Yocto Project Release layers" >> $BUILD_DIR/conf/bblayers.conf
 echo "BBLAYERS += \"\${BSPDIR}/sources/meta-calixto-nxp\"" >> conf/bblayers.conf
 echo "" >> $BUILD_DIR/conf/bblayers.conf
 
